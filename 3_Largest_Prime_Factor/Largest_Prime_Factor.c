@@ -13,15 +13,14 @@
 */
 
 int isPrime(long n){
-    //sieve of eratosthenes
+    //sieve of eratosthenes.
+    //check range is sqrt of n
     //if prime, return 1. else 0
     long i = 0;
     int prime = 1;
-    double sqrtN = 0;
-    sqrtN = n;
-    sqrtN = sqrt(n) + 1;
+
     if(n % 2 == 0 ) return 0;
-    for(i = 3 ; i < sqrtN ; i+= 2){
+    for(i = 3 ; i * i < n ; i+= 2){
         if(n % i == 0){
             prime = 0;
             break;
@@ -34,18 +33,30 @@ int main(){
     int t; 
     scanf("%d",&t);
     for(int a0 = 0; a0 < t; a0++){
-        long n; 
-		long i = 0, largestP = 0;
+        long n, origin_n;
+		long i = 0;
         scanf("%ld",&n);
-        largestP = 1;
-		for( i = ((n/2)%2 ? n/2:n/2+1) ; i > largestP ; i-=2){	//we don't need to check more then half of itself
+        // N must larger then 10 smaller then 10^12
+        //remove factor of 2
+        while(n % 2 == 0) 
+            n /= 2;
+
+        //check only odd number
+		for( i = 3 ; i * i <= n; i+= 2){
 			if( n % i == 0) {
-                if(isPrime(i))
-                    largestP = i;
+                n = n/i;
+                //remove same factor
+                while(n % i == 0){
+                    n /= i;
+                }
+                //check if it is prime
+                if(isPrime(n)){
+                    break;
+                }
 			}
 		}
-        if(largestP == 1) largestP = n;
-        printf("%ld\n",largestP);
+        if(n == 1) n = i;
+        printf("%ld\n",n);
     }
     return 0;
 }
