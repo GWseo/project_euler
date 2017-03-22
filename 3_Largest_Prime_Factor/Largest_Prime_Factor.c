@@ -10,6 +10,7 @@
     First, try sieve of eratosthenes but, Test Case #4, #5 time out
     Second, run sieve reverse   -> #4, #5 time out
     thrid, check prime odd num only, if even return fasle   -> #5 time out
+    last, divide N by divisor
 */
 
 int isPrime(long n){
