@@ -11,6 +11,10 @@
     Second, run sieve reverse   -> #4, #5 time out
     thrid, check prime odd num only, if even return fasle   -> #5 time out
     last, divide N by divisor
+
+    additional comment : I was try prime check Miller Rabin, but not that good effort, 
+                        cuz N is too small I think.
+                        The Key of this problem is divide as divisor and check till sqrt(n)
 */
 
 int isPrime(long n){
@@ -34,7 +38,7 @@ int main(){
     int t; 
     scanf("%d",&t);
     for(int a0 = 0; a0 < t; a0++){
-        long n, origin_n;
+        long n;
 		long i = 0;
         scanf("%ld",&n);
         // N must larger then 10 smaller then 10^12
